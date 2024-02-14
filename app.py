@@ -156,7 +156,7 @@ def main_dashboard():
   agg_data2['CVR'] = agg_data2['CVR'].apply(lambda x: f"{x*100:.2f}%")        
 
   # Displaying the filtered dataframes
-  col1, col2, _ = st.columns(3)
+  col1, col2, col3 = st.columns(3)
 
   with col1:
     st.write("Data for Period 1")
