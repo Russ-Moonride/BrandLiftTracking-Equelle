@@ -92,7 +92,24 @@ def main_dashboard():
   agg_data1['CPM'] = (agg_data1['Cost']/agg_data1['Impressions'])*1000
   agg_data1['CTR'] = agg_data1['Clicks']/agg_data1['Impressions']
   agg_data1['CVR'] = agg_data1['Conversions']/agg_data1['Clicks']
-  agg_data1['CPC'] = agg_data1['Cost']/agg_data1['Conversions']
+  agg_data1['CPA'] = agg_data1['Cost']/agg_data1['Conversions']
+
+  #Format final_df correctly
+  final_df['Cost'] = round(final_df['Cost'], 0).astype(int)
+  final_df['Cost'] = final_df['Cost'].apply(lambda x: f"${x}")
+          
+  final_df['CPC'] = round(final_df['CPL'], 0).astype(int)
+  #final_df['CPC'] = final_df['CPL'].apply(lambda x: f"${x}")
+  final_df['CPC'] = final_df['CPL'].apply(lambda x: '' if abs(x) > 10000 else f"${x}")
+          
+  final_df['CPC'] = round(final_df['CPC'], 2)
+  final_df['CPC'] = final_df['CPC'].apply(lambda x: f"${x}")
+          
+  final_df['CPM'] = round(final_df['CPM'], 0).astype(int)
+  final_df['CPM'] = final_df['CPM'].apply(lambda x: f"${x}")
+          
+  final_df['CTR'] = final_df['CTR'].apply(lambda x: f"{x*100:.2f}%")
+  final_df['CVR'] = final_df['CVR'].apply(lambda x: f"{x*100:.2f}%")
           
           
   filtered_df2 = full_data[(full_data['Date'] >= start_date_2) & (full_data['Date'] <= end_date_2)]
