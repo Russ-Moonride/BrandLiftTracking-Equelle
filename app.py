@@ -87,6 +87,9 @@ def main_dashboard():
   # Filtering the dataset for the selected date ranges
   filtered_df1 = full_data[(full_data['Date'] >= start_date_1) & (full_data['Date'] <= end_date_1)]
   agg_data1 = filtered_df1.select_dtypes(include='number').sum().to_frame('Sum Period 1').T
+
+  filtered_df2 = full_data[(full_data['Date'] >= start_date_2) & (full_data['Date'] <= end_date_2)]
+  agg_data2 = filtered_df2.select_dtypes(include='number').sum().to_frame('Sum Period 2').T
           
   agg_data1['CPC'] = agg_data1['Cost']/agg_data1['Clicks']
   agg_data1['CPM'] = (agg_data1['Cost']/agg_data1['Impressions'])*1000
@@ -116,10 +119,6 @@ def main_dashboard():
   agg_data1['CTR'] = agg_data1['CTR'].apply(lambda x: f"{x*100:.2f}%")
   agg_data1['CVR'] = agg_data1['CVR'].apply(lambda x: f"{x*100:.2f}%")
           
-          
-  filtered_df2 = full_data[(full_data['Date'] >= start_date_2) & (full_data['Date'] <= end_date_2)]
-  agg_data2 = filtered_df2.select_dtypes(include='number').sum().to_frame('Sum Period 2').T
-
   agg_data2['CPC'] = agg_data2['Cost']/agg_data2['Clicks']
   agg_data2['CPM'] = (agg_data2['Cost']/agg_data2['Impressions'])*1000
   agg_data2['CTR'] = agg_data2['Clicks']/agg_data2['Impressions']
