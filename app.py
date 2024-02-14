@@ -184,7 +184,8 @@ def main_dashboard():
 
   with col3: 
     st.write("Percentage Diff")
-    st.dataframe(percentage_diff.T)
+    #st.dataframe(percentage_diff.T)
+    st.markdown(html, unsafe_allow_html=True)
 
 if __name__ == '__main__':
     password_protection()
