@@ -169,23 +169,27 @@ def main_dashboard():
   col1, col2, col3 = st.columns(3)
 
   with col1:
-    st.write("Data for Period 1")
-    st.dataframe(agg_data1.T)
+    #st.write("Data for Period 1")
+    #st.dataframe(agg_data1.T)
 
   with col2:
-    st.write("Data for Period 2")
-    st.dataframe(agg_data2.T)
+    #st.write("Data for Period 2")
+    #st.dataframe(agg_data2.T)
+    df_styled = percentage_diff.T.applymap(color_code)
+    combined_df = pd.concat([sums_df1, sums_df2, df_styled], axis=1)
+    html = df_styled.to_html(escape=False, index=False, header=False)
+    st.markdown(html, unsafe_allow_html=True)
 
   # Apply the color coding
-  df_styled = percentage_diff.T.applymap(color_code)
+  #df_styled = percentage_diff.T.applymap(color_code)
 
   # Convert the DataFrame to HTML and remove index and header for display
-  html = df_styled.to_html(escape=False, index=False, header=False)
+  #html = df_styled.to_html(escape=False, index=False, header=False)
 
   with col3: 
-    st.write("Percentage Diff")
+    #st.write("Percentage Diff")
     #st.dataframe(percentage_diff.T)
-    st.markdown(html, unsafe_allow_html=True)
+    #st.markdown(html, unsafe_allow_html=True)
 
 if __name__ == '__main__':
     password_protection()
