@@ -91,7 +91,7 @@ def main_dashboard():
 
   # Filtering the dataset for the selected date ranges
   filtered_df1 = full_data[(full_data['Date'] >= start_date_1) & (full_data['Date'] <= end_date_1)]
-  agg_data1 = filtered_df1.select_dtypes(include='number').sum().to_frame('Sum Period 1').T
+  agg_data1 = filtered_df1.select_dtypes(include='number').sum().to_frame('Period 1      ').T
 
   #Add calc cols
   agg_data1['CPC'] = agg_data1['Cost']/agg_data1['Clicks']
@@ -101,7 +101,7 @@ def main_dashboard():
   agg_data1['CPA'] = agg_data1['Cost']/agg_data1['Conversions']
 
   filtered_df2 = full_data[(full_data['Date'] >= start_date_2) & (full_data['Date'] <= end_date_2)]
-  agg_data2 = filtered_df2.select_dtypes(include='number').sum().to_frame('Sum Period 2').T
+  agg_data2 = filtered_df2.select_dtypes(include='number').sum().to_frame('Period 2      ').T
 
   #Addcacl cols
   agg_data2['CPC'] = agg_data2['Cost']/agg_data2['Clicks']
@@ -175,6 +175,7 @@ def main_dashboard():
   with col2:
     #st.write("Data for Period 2")
     #st.dataframe(agg_data2.T)
+    percentage_diff['Metric'] = 'Percent Difference'
     df_styled = percentage_diff.T.applymap(color_code)
     combined_df = pd.concat([agg_data1.T, agg_data2.T, df_styled], axis=1)
     html = combined_df.to_html(escape=False)
