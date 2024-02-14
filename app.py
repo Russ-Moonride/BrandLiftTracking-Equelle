@@ -86,7 +86,7 @@ def main_dashboard():
 
   # Filtering the dataset for the selected date ranges
   filtered_df1 = full_data[(full_data['Date'] >= start_date_1) & (full_data['Date'] <= end_date_1)]
-  agg_data1 = filtered_df1.select_dtypes(include='number').sum().to_frame('Period 1 Sum')
+  agg_data1 = filtered_df1.select_dtypes(include='number').sum().to_frame()
   
           
   filtered_df2 = full_data[(full_data['Date'] >= start_date_2) & (full_data['Date'] <= end_date_2)]
