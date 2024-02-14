@@ -55,6 +55,8 @@ def main_dashboard():
 
   # Calculate the date one year ago from today
   one_year_ago = (datetime.now() - timedelta(days=365)).date()
+  two_weeks_ago = (datetime.now() - timedelta(days=14)).date()
+  one_week_ago = (datetime.now() - timedelta(days=7)).date() 
 
   if 'full_data' not in st.session_state:
       credentials = service_account.Credentials.from_service_account_info(
@@ -68,8 +70,32 @@ def main_dashboard():
       
       st.session_state.full_data = pandas.read_gbq(query, credentials=credentials)
 
-  data = st.session_state.full_data
-  st.write(data)
+  col1, col2, _ = st.columns(3)
+          
+  with col1:
+    st.write("Select Date Range for Period 1")
+    start_date_1 = st.date_input("Start date", value=two_weeks_ago, key='start1')
+    end_date_1 = st.date_input("End date", value=one_week_ago, key='end1')
+
+  with col2:
+    st.write("Select Date Range for Period 2")
+    start_date_2 = st.date_input("Start date", value=one_week_ago, key='start2')
+    end_date_2 = st.date_input("End date", value=datetime.now(), key='end2')
+
+  # Filtering the dataset for the selected date ranges
+  filtered_df1 = full_data[(full_data['Date'] >= start_date_1) & (full_data['Date'] <= end_date_1)]
+  filtered_df2 = full_data[(full_data['Date'] >= start_date_2) & (full_data['Date'] <= end_date_2)]
+
+  # Displaying the filtered dataframes
+  col1, col2, _ = st.columns(3)
+
+  with col1:
+    st.write("Data for Period 1")
+    st.dataframe(filtered_df1)
+
+  with col2:
+    st.write("Data for Period 2")
+    st.dataframe(filtered_df2)
 
 if __name__ == '__main__':
     password_protection()
