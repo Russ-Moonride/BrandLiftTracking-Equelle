@@ -97,7 +97,7 @@ def main_dashboard():
           
   sum_df1 = sum_df1.reset_index(drop=True)
   sum_df2 = sum_df2.reset_index(drop=True)
-  percentage_diff = ((sum_df1 - sum_df2) / sums_df1) * 100
+  percentage_diff = ((sum_df1 - sum_df2) / sum_df1) * 100
           
   agg_data1['CPC'] = agg_data1['Cost']/agg_data1['Clicks']
   agg_data1['CPM'] = (agg_data1['Cost']/agg_data1['Impressions'])*1000
