@@ -177,7 +177,7 @@ def main_dashboard():
     st.dataframe(agg_data2.T)
 
   # Apply the color coding
-  df_styled = percentage_diff.applymap(color_code)
+  df_styled = percentage_diff.T.applymap(color_code)
 
   # Convert the DataFrame to HTML and remove index and header for display
   html = df_styled.to_html(escape=False, index=False, header=False)
@@ -185,7 +185,7 @@ def main_dashboard():
   with col3: 
     st.write("Percentage Diff")
     #st.dataframe(percentage_diff.T)
-    st.markdown(html.T, unsafe_allow_html=True)
+    st.markdown(html, unsafe_allow_html=True)
 
 if __name__ == '__main__':
     password_protection()
