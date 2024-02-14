@@ -155,7 +155,10 @@ def main_dashboard():
   agg_data2['CPM'] = agg_data2['CPM'].apply(lambda x: f"${x}")
           
   agg_data2['CTR'] = agg_data2['CTR'].apply(lambda x: f"{x*100:.2f}%")
-  agg_data2['CVR'] = agg_data2['CVR'].apply(lambda x: f"{x*100:.2f}%")        
+  agg_data2['CVR'] = agg_data2['CVR'].apply(lambda x: f"{x*100:.2f}%")    
+
+  #format diff df
+  percentage_diff = percentage_diff.applymap(lambda x: f"{x*100:.2f}%")
 
   # Displaying the filtered dataframes
   col1, col2, col3 = st.columns(3)
