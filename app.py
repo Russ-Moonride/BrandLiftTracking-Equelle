@@ -105,7 +105,6 @@ def main_dashboard():
   agg_data1['Revenue'] = agg_data1['Revenue'].apply(lambda x: f"${x}")
           
   agg_data1['CPC'] = round(agg_data1['CPC'], 0).astype(int)
-  #agg_data1['CPC'] = agg_data1['CPC'].apply(lambda x: f"${x}")
   agg_data1['CPC'] = agg_data1['CPC'].apply(lambda x: '' if abs(x) > 10000 else f"${x}")
           
   agg_data1['CPA'] = round(agg_data1['CPA'], 2)
@@ -127,12 +126,17 @@ def main_dashboard():
   agg_data2['CVR'] = agg_data2['Conversions']/agg_data2['Clicks']
   agg_data2['CPA'] = agg_data2['Cost']/agg_data2['Conversions']     
 
-  #Format agg_data2 correctly
-  agg_data2['Cost'] = round(agg_data2['Cost'], 0).astype(int)
+  #Format agg_data1 correctly
+  agg_data2['Impressions'] = agg_data2['Impressions'].map(lambda x: "{:,}".format(int(x))) 
+  agg_data2['Clicks'] = agg_data2['Clicks'].map(lambda x: "{:,}".format(int(x)))   
+  agg_data2['Cost'] = agg_data2['Cost'].map(lambda x: "{:,}".format(int(x)))
+  agg_data2['Conversions'] = agg_data2['Conversions'].map(lambda x: "{:,}".format(int(x)))
+  agg_data2['Revenue'] = agg_data2['Revenue'].map(lambda x: "{:,}".format(int(x)))
+          
   agg_data2['Cost'] = agg_data2['Cost'].apply(lambda x: f"${x}")
+  agg_data2['Revenue'] = agg_data2['Revenue'].apply(lambda x: f"${x}")
           
   agg_data2['CPC'] = round(agg_data2['CPC'], 0).astype(int)
-  #agg_data2['CPC'] = agg_data2['CPC'].apply(lambda x: f"${x}")
   agg_data2['CPC'] = agg_data2['CPC'].apply(lambda x: '' if abs(x) > 10000 else f"${x}")
           
   agg_data2['CPA'] = round(agg_data2['CPA'], 2)
