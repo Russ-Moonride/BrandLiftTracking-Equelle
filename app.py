@@ -165,32 +165,11 @@ def main_dashboard():
   #format diff df
   percentage_diff = percentage_diff.applymap(lambda x: f"{x:.2f}%")
 
-  # Displaying the filtered dataframes
-  col1, col2, col3 = st.columns(3)
-
-  with col1:
-    st.write("Data for Period 1")
-    #st.dataframe(agg_data1.T)
-
-  with col2:
-    #st.write("Data for Period 2")
-    #st.dataframe(agg_data2.T)
-    df_styled = percentage_diff.T.applymap(color_code)
-    combined_df = pd.concat([agg_data1.T, agg_data2.T, df_styled], axis=1)
-    combined_df.columns.values[-1] = "Percent Difference"
-    html = combined_df.to_html(escape=False)
-    st.markdown(html, unsafe_allow_html=True)
-
-  # Apply the color coding
-  #df_styled = percentage_diff.T.applymap(color_code)
-
-  # Convert the DataFrame to HTML and remove index and header for display
-  #html = df_styled.to_html(escape=False, index=True, header=True)
-
-  with col3: 
-    st.write("Percentage Diff")
-    #st.dataframe(percentage_diff.T)
-    #st.markdown(html, unsafe_allow_html=True)
+  df_styled = percentage_diff.T.applymap(color_code)
+  combined_df = pd.concat([agg_data1.T, agg_data2.T, df_styled], axis=1)
+  combined_df.columns.values[-1] = "Percent Difference"
+  html = combined_df.to_html(escape=False)
+  st.markdown(html, unsafe_allow_html=True)
 
 if __name__ == '__main__':
     password_protection()
