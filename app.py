@@ -98,9 +98,11 @@ def main_dashboard():
   agg_data1['Impressions'] = agg_data1['Impressions'].map(lambda x: "{:,}".format(int(x))) 
   agg_data1['Clicks'] = agg_data1['Clicks'].map(lambda x: "{:,}".format(int(x)))   
   agg_data1['Cost'] = agg_data1['Cost'].map(lambda x: "{:,}".format(int(x)))
+  agg_data1['Conversions'] = agg_data1['Conversions'].map(lambda x: "{:,}".format(int(x)))
+  agg_data1['Revenue'] = agg_data1['Revenue'].map(lambda x: "{:,}".format(int(x)))
           
-  #agg_data1['Cost'] = round(agg_data1['Cost'], 0).astype(int)
   agg_data1['Cost'] = agg_data1['Cost'].apply(lambda x: f"${x}")
+  agg_data1['Revenue'] = agg_data1['Revenue'].apply(lambda x: f"${x}")
           
   agg_data1['CPC'] = round(agg_data1['CPC'], 0).astype(int)
   #agg_data1['CPC'] = agg_data1['CPC'].apply(lambda x: f"${x}")
