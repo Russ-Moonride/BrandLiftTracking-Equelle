@@ -53,5 +53,23 @@ def password_protection():
 def main_dashboard():
   st.markdown(f"<h1 style='text-align: center;'>{Account} Brand Lift Tracking</h1>", unsafe_allow_html=True)
 
+  # Calculate the date one year ago from today
+  one_year_ago = (datetime.now() - timedelta(days=365)).date()
+
+  if 'full_data' not in st.session_state:
+      credentials = service_account.Credentials.from_service_account_info(
+          st.secrets["gcp_service_account"]
+      )
+      client = bigquery.Client(credentials=credentials)
+      # Modify the query
+      query = f"""
+      SELECT * FROM `equelle.Equelle_Segments.Platform_Raw` 
+      WHERE Date BETWEEN '{one_year_ago}' AND CURRENT_DATE() """
+      
+      st.session_state.full_data = pandas.read_gbq(query, credentials=credentials)
+
+  data = st.session_state.full_data
+  st.write(data)
+
 if __name__ == '__main__':
     password_protection()
