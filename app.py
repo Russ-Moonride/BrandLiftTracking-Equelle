@@ -99,11 +99,11 @@ def main_dashboard():
   agg_data1['Cost'] = agg_data1['Cost'].apply(lambda x: f"${x}")
           
   agg_data1['CPC'] = round(agg_data1['CPL'], 0).astype(int)
-  #agg_data1['CPC'] = agg_data1['CPL'].apply(lambda x: f"${x}")
-  agg_data1['CPC'] = agg_data1['CPL'].apply(lambda x: '' if abs(x) > 10000 else f"${x}")
+  #agg_data1['CPC'] = agg_data1['CPC'].apply(lambda x: f"${x}")
+  agg_data1['CPC'] = agg_data1['CPC'].apply(lambda x: '' if abs(x) > 10000 else f"${x}")
           
-  agg_data1['CPC'] = round(agg_data1['CPC'], 2)
-  agg_data1['CPC'] = agg_data1['CPC'].apply(lambda x: f"${x}")
+  agg_data1['CPA'] = round(agg_data1['CPA'], 2)
+  agg_data1['CPA'] = agg_data1['CPA'].apply(lambda x: f"${x}")
           
   agg_data1['CPM'] = round(agg_data1['CPM'], 0).astype(int)
   agg_data1['CPM'] = agg_data1['CPM'].apply(lambda x: f"${x}")
