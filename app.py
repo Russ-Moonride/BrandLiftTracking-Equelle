@@ -95,7 +95,7 @@ def main_dashboard():
   agg_data1['CPA'] = agg_data1['Cost']/agg_data1['Conversions']
 
   #Format agg_data1 correctly
-  agg_data1['Impressions'] = "{:,}".format(agg_data1['Impressions']) 
+  agg_data1['Impressions'] = agg_data1['Impressions'].map("{:,}".format) 
           
   agg_data1['Cost'] = round(agg_data1['Cost'], 0).astype(int)
   agg_data1['Cost'] = agg_data1['Cost'].apply(lambda x: f"${x}")
