@@ -158,7 +158,7 @@ def main_dashboard():
   agg_data2['CVR'] = agg_data2['CVR'].apply(lambda x: f"{x*100:.2f}%")    
 
   #format diff df
-  percentage_diff = percentage_diff.applymap(lambda x: f"{x*100:.2f}%")
+  percentage_diff = percentage_diff.applymap(lambda x: f"{x:.2f}%")
 
   # Displaying the filtered dataframes
   col1, col2, col3 = st.columns(3)
