@@ -177,7 +177,7 @@ def main_dashboard():
     #st.dataframe(agg_data2.T)
     df_styled = percentage_diff.T.applymap(color_code)
     combined_df = pd.concat([agg_data1.T, agg_data2.T, df_styled], axis=1)
-    html = df_styled.to_html(escape=False, index=False, header=False)
+    html = combined_df.to_html(escape=False, index=False, header=False)
     st.markdown(html, unsafe_allow_html=True)
 
   # Apply the color coding
