@@ -172,7 +172,15 @@ def main_dashboard():
     combined_df = pd.concat([agg_data1.T, agg_data2.T, df_styled], axis=1)
     combined_df.columns.values[-1] = "Percent Difference"
     html = combined_df.to_html(escape=False)
-    st.markdown(html, unsafe_allow_html=True)
+    full_width_table_html = f"""
+    <style>
+    table {{
+        width: 100% !important;
+    }}
+    </style>
+    {html}
+    """
+    st.markdown(full_width_table_html, unsafe_allow_html=True)
 
   with col2:
     st.write("")
