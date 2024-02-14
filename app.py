@@ -169,7 +169,7 @@ def main_dashboard():
   col1, col2, col3 = st.columns(3)
 
   with col1:
-    #st.write("Data for Period 1")
+    st.write("Data for Period 1")
     #st.dataframe(agg_data1.T)
 
   with col2:
@@ -187,7 +187,7 @@ def main_dashboard():
   #html = df_styled.to_html(escape=False, index=False, header=False)
 
   with col3: 
-    #st.write("Percentage Diff")
+    st.write("Percentage Diff")
     #st.dataframe(percentage_diff.T)
     #st.markdown(html, unsafe_allow_html=True)
 
