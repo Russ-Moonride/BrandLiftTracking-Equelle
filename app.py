@@ -20,7 +20,7 @@ credentials = service_account.Credentials.from_service_account_info(
 client = bigquery.Client(credentials=credentials)
 
 Account = "Equelle"
-correct_hashed_password = "Equelle1234"
+correct_hashed_password = "CFEquelleBL1940$"
 
 st.set_page_config(page_title= f"{Account} Creative Ad Testing Dash",page_icon="🧑‍🚀",layout="wide")
 
