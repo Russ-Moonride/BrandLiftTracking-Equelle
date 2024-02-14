@@ -84,7 +84,7 @@ def main_dashboard():
     start_date_1 = st.date_input("Start date", value=two_weeks_ago, key='start1')
     end_date_1 = st.date_input("End date", value=one_week_ago, key='end1')
 
-  with col2:
+  with col3:
     st.write("Select Date Range for Period 2")
     start_date_2 = st.date_input("Start date", value=one_week_ago, key='start2')
     end_date_2 = st.date_input("End date", value=datetime.now(), key='end2')
