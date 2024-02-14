@@ -119,7 +119,24 @@ def main_dashboard():
   agg_data2['CPM'] = (agg_data2['Cost']/agg_data2['Impressions'])*1000
   agg_data2['CTR'] = agg_data2['Clicks']/agg_data2['Impressions']
   agg_data2['CVR'] = agg_data2['Conversions']/agg_data2['Clicks']
-  agg_data2['CPC'] = agg_data2['Cost']/agg_data2['Conversions']          
+  agg_data2['CPA'] = agg_data2['Cost']/agg_data2['Conversions']     
+
+  #Format agg_data2 correctly
+  agg_data2['Cost'] = round(agg_data2['Cost'], 0).astype(int)
+  agg_data2['Cost'] = agg_data2['Cost'].apply(lambda x: f"${x}")
+          
+  agg_data2['CPC'] = round(agg_data2['CPC'], 0).astype(int)
+  #agg_data2['CPC'] = agg_data2['CPC'].apply(lambda x: f"${x}")
+  agg_data2['CPC'] = agg_data2['CPC'].apply(lambda x: '' if abs(x) > 10000 else f"${x}")
+          
+  agg_data2['CPA'] = round(agg_data2['CPA'], 2)
+  agg_data2['CPA'] = agg_data2['CPA'].apply(lambda x: f"${x}")
+          
+  agg_data2['CPM'] = round(agg_data2['CPM'], 0).astype(int)
+  agg_data2['CPM'] = agg_data2['CPM'].apply(lambda x: f"${x}")
+          
+  agg_data2['CTR'] = agg_data2['CTR'].apply(lambda x: f"{x*100:.2f}%")
+  agg_data2['CVR'] = agg_data2['CVR'].apply(lambda x: f"{x*100:.2f}%")        
 
   # Displaying the filtered dataframes
   col1, col2, _ = st.columns(3)
