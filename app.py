@@ -165,19 +165,16 @@ def main_dashboard():
   #format diff df
   percentage_diff = percentage_diff.applymap(lambda x: f"{x:.2f}%")
 
-  col1, col2, col3 = st.columns(3)
-
-  with col1:
-    st.write("")
+  col1, col2 = st.columns(2)
           
-  with col2:        
+  with col1:        
     df_styled = percentage_diff.T.applymap(color_code)
     combined_df = pd.concat([agg_data1.T, agg_data2.T, df_styled], axis=1)
     combined_df.columns.values[-1] = "Percent Difference"
     html = combined_df.to_html(escape=False)
-    st.markdown(html, unsafe_allow_html=True, )
+    st.markdown(html, unsafe_allow_html=True)
 
-  with col3:
+  with col2:
     st.write("")
 
 if __name__ == '__main__':
