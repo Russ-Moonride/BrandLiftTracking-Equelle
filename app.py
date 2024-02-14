@@ -70,6 +70,8 @@ def main_dashboard():
       
       st.session_state.full_data = pandas.read_gbq(query, credentials=credentials)
 
+  full_data = st.session_state.full_data
+
   col1, col2, _ = st.columns(3)
           
   with col1:
