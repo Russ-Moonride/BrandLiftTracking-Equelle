@@ -97,7 +97,7 @@ def main_dashboard():
   #Format agg_data1 correctly
   agg_data1['Impressions'] = agg_data1['Impressions'].map(lambda x: "{:,}".format(int(x))) 
   agg_data1['Clicks'] = agg_data1['Impressions'].map(lambda x: "{:,}".format(int(x)))   
-  agg_data1['Cost'] = agg_data1['Impressions'].map(lambda x: "{:,}".format(int(x)))
+  agg_data1['Cost'] = agg_data1['Cost'].map(lambda x: "{:,}".format(int(x)))
           
   #agg_data1['Cost'] = round(agg_data1['Cost'], 0).astype(int)
   agg_data1['Cost'] = agg_data1['Cost'].apply(lambda x: f"${x}")
