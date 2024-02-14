@@ -90,6 +90,14 @@ def main_dashboard():
 
   filtered_df2 = full_data[(full_data['Date'] >= start_date_2) & (full_data['Date'] <= end_date_2)]
   agg_data2 = filtered_df2.select_dtypes(include='number').sum().to_frame('Sum Period 2').T
+
+  #Creating diff df
+  sum_df1 = agg_data1
+  sum_df2 = agg_data2
+          
+  sum_df1 = sum_df1.reset_index(drop=True)
+  sum_df2 = sum_df2.reset_index(drop=True)
+  percentage_diff = ((sum_df1 - sum_df2) / sums_df1) * 100
           
   agg_data1['CPC'] = agg_data1['Cost']/agg_data1['Clicks']
   agg_data1['CPM'] = (agg_data1['Cost']/agg_data1['Impressions'])*1000
@@ -157,6 +165,9 @@ def main_dashboard():
   with col2:
     st.write("Data for Period 2")
     st.dataframe(agg_data2.T)
+
+  with col3: 
+    st.write(percentage_diff)
 
 if __name__ == '__main__':
     password_protection()
