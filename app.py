@@ -96,8 +96,13 @@ def main_dashboard():
           
           
   filtered_df2 = full_data[(full_data['Date'] >= start_date_2) & (full_data['Date'] <= end_date_2)]
-  agg_data2 = filtered_df2.select_dtypes(include='number').sum().to_frame('Sum Period 2')
+  agg_data2 = filtered_df2.select_dtypes(include='number').sum().to_frame('Sum Period 2').T
 
+  agg_data2['CPC'] = agg_data2['Cost']/agg_data2['Clicks']
+  agg_data2['CPM'] = (agg_data2['Cost']/agg_data2['Impressions'])*1000
+  agg_data2['CTR'] = agg_data2['Clicks']/agg_data2['Impressions']
+  agg_data2['CVR'] = agg_data2['Conversions']/agg_data2['Clicks']
+  agg_data2['CPC'] = agg_data2['Cost']/agg_data2['Conversions']          
 
   # Displaying the filtered dataframes
   col1, col2, _ = st.columns(3)
@@ -108,7 +113,7 @@ def main_dashboard():
 
   with col2:
     st.write("Data for Period 2")
-    st.dataframe(agg_data2)
+    st.dataframe(agg_data2.T)
 
 if __name__ == '__main__':
     password_protection()
