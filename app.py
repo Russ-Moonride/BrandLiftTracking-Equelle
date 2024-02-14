@@ -87,11 +87,12 @@ def main_dashboard():
   # Filtering the dataset for the selected date ranges
   filtered_df1 = full_data[(full_data['Date'] >= start_date_1) & (full_data['Date'] <= end_date_1)]
   agg_data1 = filtered_df1.select_dtypes(include='number').sum().to_frame('Sum Period 1')
-  agg_data1['CPC'] = agg_data1['Cost']/agg_data1['Clicks']
-  agg_data1['CPM'] = (agg_data1['Cost']/agg_data1['Impressions'])*1000
-  agg_data1['CTR'] = agg_data1['Clicks']/agg_data1['Impressions']
-  agg_data1['CVR'] = agg_data1['Conversions']/agg_data1['Clicks']
-  agg_data1['CPC'] = agg_data1['Cost']/agg_data1['Conversions']
+          
+  #agg_data1['CPC'] = agg_data1['Cost']/agg_data1['Clicks']
+  #agg_data1['CPM'] = (agg_data1['Cost']/agg_data1['Impressions'])*1000
+  #agg_data1['CTR'] = agg_data1['Clicks']/agg_data1['Impressions']
+  #agg_data1['CVR'] = agg_data1['Conversions']/agg_data1['Clicks']
+  #agg_data1['CPC'] = agg_data1['Cost']/agg_data1['Conversions']
           
           
   filtered_df2 = full_data[(full_data['Date'] >= start_date_2) & (full_data['Date'] <= end_date_2)]
