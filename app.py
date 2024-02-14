@@ -167,7 +167,8 @@ def main_dashboard():
     st.dataframe(agg_data2.T)
 
   with col3: 
-    st.write(percentage_diff)
+    st.write("Percentage Diff")
+    st.dataframe(percentage_diff.T)
 
 if __name__ == '__main__':
     password_protection()
