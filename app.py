@@ -77,7 +77,7 @@ def main_dashboard():
 
   full_data = st.session_state.full_data
 
-  col1, col2 = st.columns(2)
+  col1, _, col3, _  = st.columns(4)
           
   with col1:
     st.write("Select Date Range for Period 1")
