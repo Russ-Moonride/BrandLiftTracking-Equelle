@@ -184,7 +184,7 @@ def main_dashboard():
   #df_styled = percentage_diff.T.applymap(color_code)
 
   # Convert the DataFrame to HTML and remove index and header for display
-  #html = df_styled.to_html(escape=False, index=False, header=True)
+  #html = df_styled.to_html(escape=False, index=True, header=True)
 
   with col3: 
     st.write("Percentage Diff")
