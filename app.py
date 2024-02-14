@@ -88,7 +88,7 @@ def main_dashboard():
   filtered_df1 = full_data[(full_data['Date'] >= start_date_1) & (full_data['Date'] <= end_date_1)]
   agg_data1 = filtered_df1.select_dtypes(include='number').sum().to_frame('Sum Period 1').T
 
-  st.write(agg_data.columns) 
+  st.write(agg_data1.columns) 
           
   #agg_data1['CPC'] = agg_data1['Cost']/agg_data1['Clicks']
   #agg_data1['CPM'] = (agg_data1['Cost']/agg_data1['Impressions'])*1000
