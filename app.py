@@ -50,6 +50,11 @@ def password_protection():
   else:
       main_dashboard()
 
+# Function to color code the percentage
+def color_code(val):
+    color = 'red' if float(val.strip('%')) > 0 else 'green'
+    return f'<p style="color:{color};">{val}</p>'
+
 def main_dashboard():
   st.markdown(f"<h1 style='text-align: center;'>{Account} Brand Lift Tracking</h1>", unsafe_allow_html=True)
 
@@ -170,6 +175,12 @@ def main_dashboard():
   with col2:
     st.write("Data for Period 2")
     st.dataframe(agg_data2.T)
+
+  # Apply the color coding
+  df_styled = percentage_diff.applymap(color_code)
+
+  # Convert the DataFrame to HTML and remove index and header for display
+  html = df_styled.to_html(escape=False, index=False, header=False)
 
   with col3: 
     st.write("Percentage Diff")
