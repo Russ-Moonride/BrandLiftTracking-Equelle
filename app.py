@@ -90,6 +90,22 @@ def main_dashboard():
     start_date_2 = st.date_input("Start date", value=one_week_ago, key='start2')
     end_date_2 = st.date_input("End date", value=datetime.now(), key='end2')
 
+  #Creating two groups for bar chart
+  
+  # Filter data by date range
+  full_data['range'] = pd.cut(full_data['date'], bins=[start_date_1, end_date_1, end_date_2], labels=['Range 1', 'Range 2'])
+
+  # Aggregate data by day and range
+  daily_data = full_data.groupby([full_data['date'].dt.date, 'range'])['value'].sum().unstack(fill_value=0)
+
+  # Plot
+  fig, ax = plt.subplots(figsize=(10, 6))
+  daily_data.plot(kind='bar', ax=ax, color=['blue', 'orange'])
+  ax.set_title('Daily Data Comparison')
+  ax.set_xlabel('Date')
+  ax.set_ylabel('Value')
+  ax.legend(title='Date Range')
+ 
   # Filtering the dataset for the selected date ranges
   filtered_df1 = full_data[(full_data['Date'] >= start_date_1) & (full_data['Date'] <= end_date_1)]
   agg_data1 = filtered_df1.select_dtypes(include='number').sum().to_frame('Period 1      ').T
@@ -176,7 +192,7 @@ def main_dashboard():
     st.markdown(html, unsafe_allow_html=True)
 
   with col2:
-    st.write("")
+    st.pyplot(fig)
 
 if __name__ == '__main__':
     password_protection()
