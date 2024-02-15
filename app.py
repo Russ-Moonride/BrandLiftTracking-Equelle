@@ -184,14 +184,33 @@ def main_dashboard():
   #format diff df
   percentage_diff = percentage_diff.applymap(lambda x: f"{x:.2f}%")
 
+  df_styled = percentage_diff.T.applymap(color_code)
+  combined_df = pd.concat([agg_data1.T, agg_data2.T, df_styled], axis=1)
+  combined_df.columns.values[-1] = "Percent Difference"
+  html = combined_df.to_html(escape=False)
+          
+  # Custom CSS to inject width and possibly overflow handling
+  custom_css = """
+  <style>
+      table { 
+          width: 100%; 
+          border-collapse: collapse; 
+      } 
+      th, td { 
+          text-align: left; 
+          padding: 8px; 
+      } 
+      tr:nth-child(even) {background-color: #f2f2f2;}
+  </style>
+  """
+
+  # Combine custom CSS with DataFrame HTML
+  html_with_css = custom_css + html
+
   col1, col2 = st.columns(2)
           
   with col1:        
-    df_styled = percentage_diff.T.applymap(color_code)
-    combined_df = pd.concat([agg_data1.T, agg_data2.T, df_styled], axis=1)
-    combined_df.columns.values[-1] = "Percent Difference"
-    html = combined_df.to_html(escape=False)
-    st.markdown(html, unsafe_allow_html=True)
+    st.markdown(html_with_css, unsafe_allow_html=True)
 
   with col2:
     st.pyplot(fig)
