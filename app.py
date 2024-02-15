@@ -124,13 +124,6 @@ def main_dashboard():
   ax.set_xlabel('Date')
   ax.set_ylabel('Value')
   ax.legend(title='Date Range')
-
-  # Adding tick marks (values) on top of each bar
-  for container in ax.containers:
-      ax.bar_label(container, fmt='%.2f', label_type='edge', padding=3)
-
-  plt.xticks(rotation=45)  # Rotate dates for better readability
-  plt.tight_layout()
  
   # Filtering the dataset for the selected date ranges
   filtered_df1 = full_data[(full_data['Date'] >= start_date_1) & (full_data['Date'] <= end_date_1)]
