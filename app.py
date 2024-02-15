@@ -93,7 +93,7 @@ def main_dashboard():
   #Creating two groups for bar chart
   
   # Filter data by date range
-  full_data['range'] = pd.cut(full_data['date'], bins=[start_date_1, end_date_1, end_date_2], labels=['Range 1', 'Range 2'])
+  full_data['range'] = pd.cut(full_data['Date'], bins=[start_date_1, end_date_1, end_date_2], labels=['Range 1', 'Range 2'])
 
   # Aggregate data by day and range
   daily_data = full_data.groupby([full_data['date'].dt.date, 'range'])['value'].sum().unstack(fill_value=0)
