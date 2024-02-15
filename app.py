@@ -102,8 +102,12 @@ def main_dashboard():
   # Filter data by date range
   full_data['range'] = pd.cut(full_data['Date'], bins=[start_date_1, end_date_1, end_date_2], labels=['Range 1', 'Range 2'])
 
+         
   # Aggregate data by day and range
   daily_data = full_data.groupby([full_data['Date'].dt.date, 'range'])['Impressions'].sum().unstack(fill_value=0)
+
+  st.write(full_data) 
+  st.write(daily_data) 
 
   # Plot
   fig, ax = plt.subplots(figsize=(10, 6))
