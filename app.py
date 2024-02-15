@@ -91,24 +91,23 @@ def main_dashboard():
     end_date_2 = st.date_input("End date", value=datetime.now(), key='end2')
 
   #Creating two groups for bar chart
-
   start_date_1 = pd.Timestamp(start_date_1)
   end_date_1 = pd.Timestamp(end_date_1)
   start_date_2 = pd.Timestamp(start_date_2)
   end_date_2 = pd.Timestamp(end_date_2)
 
   full_data['Date'] = pd.to_datetime(full_data['Date'])
+  data_copy = full_data
   
-  # Filter data by date range
-  full_data['range'] = pd.cut(full_data['Date'], bins=[start_date_1, end_date_1, end_date_2], labels=['Range 1', 'Range 2'])
-         
-  # Aggregate data by day and range
-  daily_data = full_data.groupby([full_data['Date'].dt.date, 'range'])['Impressions'].sum().unstack(fill_value=0)
-  st.write(daily_data.columns)
-  daily_data = daily_data[((daily_data['Date'] >= start_date_1) & (daily_data['Date'] <= end_date_1)) | 
-                 ((daily_data['Date'] >= start_date_2) & (daily_data['Date'] <= end_date_2))]
-
+  # Create Groups for viz
+  data_copy['range'] = pd.cut(data_copy['Date'], bins=[start_date_1, end_date_1, end_date_2], labels=['Range 1', 'Range 2'])
+  
+  data_copy = data_copy[((data_copy['Date'] >= start_date_1) & (data_copy['Date'] <= end_date_1)) | 
+                 ((data_copy['Date'] >= start_date_2) & (data_copy['Date'] <= end_date_2))]
           
+  # Aggregate data by day and range
+  daily_data = data_copy.groupby([data_copy['Date'].dt.date, 'range'])['Impressions'].sum().unstack(fill_value=0)
+      
   # Plot
   fig, ax = plt.subplots(figsize=(10, 6))
   daily_data.plot(kind='bar', ax=ax, color=['blue', 'orange'])
