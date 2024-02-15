@@ -22,7 +22,7 @@ client = bigquery.Client(credentials=credentials)
 Account = "Equelle"
 correct_hashed_password = "CFEquelleBL1940$"
 
-st.set_page_config(page_title= f"{Account} Creative Ad Testing Dash",page_icon="🧑‍🚀",layout="wide")
+st.set_page_config(page_title= f"{Account} Creative Ad Testing Dash",page_icon="🧑‍🚀")
 
 def initialize_storage_client():
     credentials = service_account.Credentials.from_service_account_info(
