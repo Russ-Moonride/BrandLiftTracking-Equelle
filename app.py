@@ -104,8 +104,9 @@ def main_dashboard():
          
   # Aggregate data by day and range
   daily_data = full_data.groupby([full_data['Date'].dt.date, 'range'])['Impressions'].sum().unstack(fill_value=0)
-  daily_data = daily_data[((daily_data['Date'] >= start_date_1) & (daily_data['Date'] <= end_date_1)) | 
-                 ((daily_data['Date'] >= start_date_2) & (daily_data['Date'] <= end_date_2))]
+  st.write(daily_data)
+  #daily_data = daily_data[((daily_data['Date'] >= start_date_1) & (daily_data['Date'] <= end_date_1)) | 
+  #               ((daily_data['Date'] >= start_date_2) & (daily_data['Date'] <= end_date_2))]
 
   st.write(full_data) 
   st.write(daily_data) 
