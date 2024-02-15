@@ -91,7 +91,7 @@ def main_dashboard():
     end_date_2 = st.date_input("End date", value=datetime.now(), key='end2')
   
   with col3:
-    for i in range(10):
+    for i in range(8):
               st.write("")
     metric = st.selectbox(
     'Select Metric for Bar Chart',
