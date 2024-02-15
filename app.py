@@ -93,7 +93,7 @@ def main_dashboard():
   with col3:
     metric = st.selectbox(
     'Select Metric for Bar Chart',
-    ('Impressions', 'Clicks', 'Cost', 'Conversions', 'Revenue')
+    ('Impressions', 'Clicks', 'Cost', 'Conversions', 'Revenue'))
     
 
   #Creating two groups for bar chart
