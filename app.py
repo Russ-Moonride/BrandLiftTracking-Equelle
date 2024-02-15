@@ -191,7 +191,7 @@ def main_dashboard():
     combined_df = pd.concat([agg_data1.T, agg_data2.T, df_styled], axis=1)
     combined_df.columns.values[-1] = "Percent Difference"
     html = combined_df.to_html(escape=False)
-    st.markdown(html, unsafe_allow_html=True)
+    st.markdown(html, unsafe_allow_html=True, layout = 'wide')
 
   with col2:
     st.pyplot(fig)
