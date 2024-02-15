@@ -108,8 +108,8 @@ def main_dashboard():
   # Plot
   fig, ax = plt.subplots(figsize=(10, 6))
   for date_range, color in zip(['Range 1', 'Range 2'], ['blue', 'orange']):
-    range_data = daily_data[(daily_data['date'] >= eval(f'start_date_{date_range[-1]}')) & 
-                            (daily_data['date'] <= eval(f'end_date_{date_range[-1]}'))]
+    range_data = daily_data[(daily_data['Date'] >= eval(f'start_date_{date_range[-1]}')) & 
+                            (daily_data['Date'] <= eval(f'end_date_{date_range[-1]}'))]
     ax.bar(range_data.index, range_data['value'], color=color, label=date_range)
 
   daily_data.plot(kind='bar', ax=ax, color=['blue', 'orange'])
