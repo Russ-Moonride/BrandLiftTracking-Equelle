@@ -78,7 +78,7 @@ def main_dashboard():
 
   full_data = st.session_state.full_data
 
-  col1, col2, _, _  = st.columns(4)
+  col1, col2, col3, _  = st.columns(4)
           
   with col1:
     st.write("Select Date Range for Period 1")
@@ -89,6 +89,12 @@ def main_dashboard():
     st.write("Select Date Range for Period 2")
     start_date_2 = st.date_input("Start date", value=one_week_ago, key='start2')
     end_date_2 = st.date_input("End date", value=datetime.now(), key='end2')
+  
+  with col3:
+    metric = st.selectbox(
+    'Select Metric for Bar Chart',
+    ('Impressions', 'Clicks', 'Cost', 'Conversions', 'Revenue')
+    
 
   #Creating two groups for bar chart
   start_date_1 = pd.Timestamp(start_date_1)
@@ -104,14 +110,15 @@ def main_dashboard():
   
   data_copy = data_copy[((data_copy['Date'] >= start_date_1) & (data_copy['Date'] <= end_date_1)) | 
                  ((data_copy['Date'] >= start_date_2) & (data_copy['Date'] <= end_date_2))]
+
           
   # Aggregate data by day and range
-  daily_data = data_copy.groupby([data_copy['Date'].dt.date, 'range'])['Impressions'].sum().unstack(fill_value=0)
+  daily_data = data_copy.groupby([data_copy['Date'].dt.date, 'range'])[metric].sum().unstack(fill_value=0)
       
   # Plot
   fig, ax = plt.subplots(figsize=(10, 6))
   daily_data.plot(kind='bar', ax=ax, color=['blue', 'orange'])
-  ax.set_title('Daily Data Comparison')
+  ax.set_title(f'Sum of {metric} Period Comparison')
   ax.set_xlabel('Date')
   ax.set_ylabel('Value')
   ax.legend(title='Date Range')
