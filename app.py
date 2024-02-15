@@ -91,6 +91,11 @@ def main_dashboard():
     end_date_2 = st.date_input("End date", value=datetime.now(), key='end2')
 
   #Creating two groups for bar chart
+
+  start_date_1 = pd.Timestamp(start_date_1)
+  end_date_1 = pd.Timestamp(end_date_1)
+  start_date_2 = pd.Timestamp(start_date_2)
+  end_date_2 = pd.Timestamp(end_date_2)
   
   # Filter data by date range
   full_data['range'] = pd.cut(full_data['Date'], bins=[start_date_1, end_date_1, end_date_2], labels=['Range 1', 'Range 2'])
