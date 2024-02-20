@@ -200,17 +200,16 @@ def main_dashboard():
           
   # Custom CSS to inject width and possibly overflow handling
   custom_css = """
-  <style>
-      table { 
-          width: 100%; 
-          border-collapse: collapse; 
-      } 
-      th, td { 
-          text-align: left; 
-          padding: 8px; 
-      } 
-      tr:nth-child(even) {background-color: #f2f2f2;}
-  </style>
+ <style>
+    table { 
+        width: 100%; 
+        border-collapse: collapse; 
+    } 
+    th, td { 
+        text-align: left; 
+        padding: 8px; 
+    } 
+</style>
   """
 
   # Combine custom CSS with DataFrame HTML
