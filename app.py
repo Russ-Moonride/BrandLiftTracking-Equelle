@@ -73,7 +73,7 @@ def main_dashboard():
       query = f"""
       SELECT * FROM `equelle.Equelle_Segments.Platform_Raw` 
       WHERE Date BETWEEN '{one_year_ago}' AND CURRENT_DATE()
-      AND Type ="Brand""""
+      AND Type ='Brand'"""
       
       st.session_state.full_data = pandas.read_gbq(query, credentials=credentials)
 
