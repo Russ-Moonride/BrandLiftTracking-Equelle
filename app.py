@@ -53,7 +53,7 @@ def password_protection():
 
 # Function to color code the percentage
 def color_code(val):
-    color = 'red' if float(val.strip('%')) > 0 else 'green'
+    color = 'red' if float(val.strip('%')) < 0 else 'green'
     return f'<p style="color:{color};">{val}</p>'
 
 def main_dashboard():
@@ -151,7 +151,7 @@ def main_dashboard():
           
   sum_df1 = sum_df1.reset_index(drop=True)
   sum_df2 = sum_df2.reset_index(drop=True)
-  percentage_diff = (((sum_df1 - sum_df2) / sum_df1) * 100) *-1
+  percentage_diff = (((sum_df1 - sum_df2) / sum_df1) * 100) * -1
           
   #Format agg_data1 correctly
   agg_data1['Impressions'] = agg_data1['Impressions'].map(lambda x: "{:,}".format(int(x))) 
